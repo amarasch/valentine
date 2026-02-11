@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>💕 San Valentino 💕</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #ffdde1 0%, #ffb3c1 50%, #ff8fa3 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Cuori fluttuanti in background */
+        .heart {
+            position: absolute;
+            font-size: 30px;
+            animation: float 6s ease-in-out infinite;
+            opacity: 0.3;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0) rotate(0deg);
+            }
+            50% {
+                transform: translateY(-30px) rotate(10deg);
+            }
+        }
+
+        .container {
+            text-align: center;
+            max-width: 500px;
+            width: 90%;
+            animation: slideIn 0.6s ease-out;
+            position: relative;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .gif-container {
+            margin-bottom: 30px;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .gif-container img {
+            width: 200px;
+            height: 200px;
+            border-radius: 20px;
+            border: 5px solid #ff69b4;
+            box-shadow: 0 10px 30px rgba(255, 105, 180, 0.3);
+        }
+
+        h1 {
+            color: #ff1493;
+            font-size: 28px;
+            margin-bottom: 40px;
+            text-shadow: 2px 2px 4px rgba(255, 105, 180, 0.3);
+            animation: fadeIn 1s ease-out 0.3s both;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        button {
+            width: 160px;
+            height: 66px;
+            font-size: 22px;
+            font-weight: bold;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease, transform 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Assicura che i pulsanti mobili partano dalla posizione normale */
+        #btnNo2, #btnNo1b, #btnSi1b {
+            position: relative;
+            left: 0;
+            top: 0;
+        }
+
+        button::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        button:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .btn-si {
+            background: #ff69b4;
+            color: white;
+        }
+
+        .btn-si:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 10px 25px rgba(255, 105, 180, 0.5);
+            background: #ff1493;
+        }
+
+        .btn-no {
+            background: white;
+            color: #ff69b4;
+            border: 2px solid #ff69b4;
+        }
+
+        .btn-no:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(255, 105, 180, 0.3);
+            background: #fff0f5;
+        }
+
+        .btn-no:active {
+            animation: shake 0.5s;
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-10px) rotate(-5deg); }
+            75% { transform: translateX(10px) rotate(5deg); }
+        }
+
+        /* Schermata secondaria */
+        .hidden {
+            display: none;
+        }
+
+        .screen {
+            transition: opacity 0.5s ease;
+        }
+
+        .fade-out {
+            opacity: 0;
+        }
+
+        .fade-in {
+            animation: fadeInScreen 0.5s ease-out;
+        }
+
+        @keyframes fadeInScreen {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Sottotitolo terza schermata */
+        .subtitle {
+            color: #ff69b4;
+            font-size: 18px;
+            margin-top: 20px;
+            font-weight: normal;
+            text-shadow: 1px 1px 2px rgba(255, 105, 180, 0.2);
+        }
+
+        .emoji-rain {
+            font-size: 40px;
+            animation: fall 3s linear infinite;
+        }
+
+        @keyframes fall {
+            0% {
+                transform: translateY(-100vh) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Cuori decorativi -->
+    <div class="heart" style="left: 10%; top: 20%; animation-delay: 0s;">💖</div>
+    <div class="heart" style="left: 80%; top: 30%; animation-delay: 1s;">💕</div>
+    <div class="heart" style="left: 15%; top: 70%; animation-delay: 2s;">💗</div>
+    <div class="heart" style="left: 85%; top: 60%; animation-delay: 1.5s;">💓</div>
+    <div class="heart" style="left: 50%; top: 10%; animation-delay: 0.5s;">💝</div>
+
+    <div class="container">
+        <!-- Prima schermata -->
+        <div id="screen1" class="screen">
+            <div class="gif-container">
+                <img id="mainGif" src="https://usagif.com/wp-content/uploads/gifs/happy-cat-28.gif" alt="Bambina innamorata">
+            </div>
+
+            <h1>💕 Vuoi essere il mio valentino? 💕</h1>
+
+            <div class="buttons">
+                <button class="btn-si" onclick="rispostaSi()">✨ Sì! ✨</button>
+                <button class="btn-no" id="btnNo1" onclick="rispostaNo()">😔 No</button>
+            </div>
+        </div>
+
+        <!-- Schermata 1B - Dopo il primo Sì -->
+        <div id="screen1b" class="screen hidden">
+            <div class="gif-container">
+                <img id="gif1b" src="https://media.giphy.com/media/l0MYt5jPR6QX5pnqM/giphy.gif" alt="Gif felice">
+            </div>
+
+            <h1 id="title1b">💕 Che bello!!! Guardiamo anche l'Inter insieme? 💕</h1>
+
+            <div class="buttons">
+                <button class="btn-si" id="btnSi1b" onmouseenter="if(!isTouchDevice()) moveSiButton()" onclick="interSi()">Sì</button>
+                <button class="btn-no" id="btnNo1b" onclick="interNo()">No</button>
+            </div>
+        </div>
+
+        <!-- Seconda schermata - Dopo il primo No -->
+        <div id="screen2" class="screen hidden">
+            <div class="gif-container">
+                <img src="https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExNnM2ZnVtZzE0M25sMzZvMWJsaWt1M3I3Mnhza3B5bDVyNnFlYm5paiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/12dA9Gei6U4in6/giphy.gif" alt="Gif triste">
+            </div>
+
+            <h1>Almeno vuoi vedere l'Inter insieme?</h1>
+
+            <div class="buttons">
+                <button class="btn-si" onclick="finaleSi()">Sì</button>
+                <button class="btn-no" id="btnNo2" onmouseenter="if(!isTouchDevice()) moveButton()">No</button>
+            </div>
+        </div>
+
+        <!-- Terza schermata - Finale -->
+        <div id="screen3" class="screen hidden">
+            <div class="gif-container">
+                <img src="https://media.giphy.com/media/l0MYt5jPR6QX5pnqM/giphy.gif" alt="Gif felice">
+            </div>
+
+            <h1>💙🖤 Ottimo! Allora Inter e tantissimi bacini 💋</h1>
+            <p class="subtitle">Speriamo che l'Inter vinca per concludere al meglio la serata</p>
+        </div>
+    </div>
+
+    <script>
+        let hoverCount = 0;
+        let hoverCount1b = 0;
+        const maxHovers = 5;
+        let interNoClicked = false; // Track if "No" was clicked on screen1b
+
+        function rispostaSi() {
+            // Vai alla schermata 1B (Inter)
+            const screen1 = document.getElementById('screen1');
+            const screen1b = document.getElementById('screen1b');
+            
+            screen1.classList.add('fade-out');
+            
+            setTimeout(() => {
+                screen1.classList.add('hidden');
+                screen1b.classList.remove('hidden');
+                screen1b.classList.add('fade-in');
+                
+                // Reset screen1b state
+                interNoClicked = false;
+                hoverCount1b = 0;
+                document.getElementById('title1b').textContent = '💕 Che bello!!! Guardiamo anche l\'Inter insieme? 💕';
+                document.getElementById('gif1b').src = 'https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExdHh3OGV3aDZnMnN5djE0amNxYWhzc2M4bnpqeWV5bHN2aWZyMjhzNyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/Vzkgcis3OCRUSVMleW/giphy.gif';
+                const btnSi1b = document.getElementById('btnSi1b');
+                const btnNo1b = document.getElementById('btnNo1b');
+                btnSi1b.style.transform = 'translate(0, 0)';
+                btnSi1b.style.visibility = 'visible';
+                btnSi1b.style.opacity = '1';
+                btnNo1b.style.transform = 'translate(0, 0)';
+            }, 500);
+        }
+
+        function rispostaNo() {
+            // Vai alla seconda schermata
+            mostraSchermata2();
+        }
+
+        function interSi() {
+            // Click su Sì porta alla schermata finale solo se non è stato cliccato No
+            if (!interNoClicked) {
+                mostraSchermataFinale();
+            }
+        }
+
+        function moveSiButton() {
+            if (!interNoClicked) return; // L'animazione si attiva solo dopo aver cliccato No
+
+            const btnSi = document.getElementById('btnSi1b');
+
+            if (hoverCount1b < maxHovers) {
+                const containerWidth = window.innerWidth * 0.8;
+                const containerHeight = window.innerHeight * 0.6;
+                const buttonWidth = btnSi.offsetWidth;
+                const buttonHeight = btnSi.offsetHeight;
+
+                const maxX = (containerWidth - buttonWidth) / 2;
+                const maxY = (containerHeight - buttonHeight) / 2;
+
+                const randomX = (Math.random() - 0.5) * maxX * 2;
+                const randomY = (Math.random() - 0.5) * maxY * 2;
+
+                btnSi.style.transform = `translate(${randomX}px, ${randomY}px)`;
+                hoverCount1b++;
+
+                if (hoverCount1b >= maxHovers) {
+                    setTimeout(() => {
+                        btnSi.style.visibility = 'hidden';
+                        btnSi.style.opacity = '0';
+                    }, 300);
+                }
+            }
+        }
+
+        function interNo() {
+            if (!interNoClicked) {
+                // Prima volta che clicca No - cambia titolo e gif
+                interNoClicked = true;
+                document.getElementById('title1b').textContent = '😢 Sei sicura?';
+                document.getElementById('gif1b').src = 'https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExNnM2ZnVtZzE0M25sMzZvMWJsaWt1M3I3Mnhza3B5bDVyNnFlYm5paiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/12dA9Gei6U4in6/giphy.gif';
+            } else {
+                // Seconda volta che clicca No - vai alla schermata finale
+                mostraSchermataFinale();
+            }
+        }
+
+        function moveButtonSi1b() {
+            const btnSi = document.getElementById('btnSi1b');
+            
+            if (hoverCount1b < maxHovers) {
+                const containerWidth = window.innerWidth * 0.8;
+                const containerHeight = window.innerHeight * 0.6;
+                const buttonWidth = btnSi.offsetWidth;
+                const buttonHeight = btnSi.offsetHeight;
+                
+                const maxX = (containerWidth - buttonWidth) / 2;
+                const maxY = (containerHeight - buttonHeight) / 2;
+                
+                const randomX = (Math.random() - 0.5) * maxX * 2;
+                const randomY = (Math.random() - 0.5) * maxY * 2;
+                
+                btnSi.style.transform = `translate(${randomX}px, ${randomY}px)`;
+                hoverCount1b++;
+                
+                if (hoverCount1b >= maxHovers) {
+                    setTimeout(() => {
+                        btnSi.style.visibility = 'hidden';
+                        btnSi.style.opacity = '0';
+                    }, 300);
+                }
+            }
+        }
+
+        function mostraSchermata2() {
+            const screen1 = document.getElementById('screen1');
+            const screen2 = document.getElementById('screen2');
+            
+            screen1.classList.add('fade-out');
+            
+            setTimeout(() => {
+                screen1.classList.add('hidden');
+                screen2.classList.remove('hidden');
+                screen2.classList.add('fade-in');
+                
+                hoverCount = 0;
+                const btnNo2 = document.getElementById('btnNo2');
+                btnNo2.style.visibility = 'visible';
+                btnNo2.style.opacity = '1';
+                btnNo2.style.transform = 'translate(0, 0)';
+                btnNo2.style.position = 'relative';
+            }, 500);
+        }
+
+        function moveButton() {
+            const btnNo = document.getElementById('btnNo2');
+            
+            if (hoverCount < maxHovers) {
+                const containerWidth = window.innerWidth * 0.8;
+                const containerHeight = window.innerHeight * 0.6;
+                const buttonWidth = btnNo.offsetWidth;
+                const buttonHeight = btnNo.offsetHeight;
+                
+                const maxX = (containerWidth - buttonWidth) / 2;
+                const maxY = (containerHeight - buttonHeight) / 2;
+                
+                const randomX = (Math.random() - 0.5) * maxX * 2;
+                const randomY = (Math.random() - 0.5) * maxY * 2;
+                
+                btnNo.style.transform = `translate(${randomX}px, ${randomY}px)`;
+                hoverCount++;
+                
+                if (hoverCount >= maxHovers) {
+                    setTimeout(() => {
+                        btnNo.style.visibility = 'hidden';
+                        btnNo.style.opacity = '0';
+                    }, 300);
+                }
+            }
+        }
+
+        function finaleSi() {
+            mostraSchermataFinale();
+        }
+
+        function mostraSchermataFinale() {
+            const screen1b = document.getElementById('screen1b');
+            const screen2 = document.getElementById('screen2');
+            const screen3 = document.getElementById('screen3');
+            
+            // Determina quale schermata nascondere
+            let currentScreen = screen1b;
+            if (!screen2.classList.contains('hidden')) {
+                currentScreen = screen2;
+            }
+            
+            currentScreen.classList.add('fade-out');
+            
+            setTimeout(() => {
+                currentScreen.classList.add('hidden');
+                screen3.classList.remove('hidden');
+                screen3.classList.add('fade-in');
+            }, 500);
+        }
+
+        function createFallingHeart() {
+            const heart = document.createElement('div');
+            heart.className = 'emoji-rain';
+            heart.textContent = ['💖', '💕', '💗', '💓', '💝'][Math.floor(Math.random() * 5)];
+            heart.style.position = 'fixed';
+            heart.style.left = Math.random() * 100 + '%';
+            heart.style.top = '-50px';
+            heart.style.animationDuration = (Math.random() * 2 + 2) + 's';
+            heart.style.animationDelay = Math.random() * 0.5 + 's';
+            document.body.appendChild(heart);
+            
+            setTimeout(() => {
+                heart.remove();
+            }, 5000);
+        }
+
+        function startHeartRain() {
+            setInterval(() => {
+                createFallingHeart();
+            }, 500);
+        }
+
+        window.addEventListener('load', startHeartRain);
+
+        // Rileva se è un dispositivo touch
+        const isTouchDevice = () => window.matchMedia('(hover: none) and (pointer: coarse)').matches;
+
+        // Su mobile: sostituisci hover con tap
+        document.addEventListener('DOMContentLoaded', () => {
+            if (!isTouchDevice()) return;
+
+            const btnSi1b = document.getElementById('btnSi1b');
+            const btnNo2 = document.getElementById('btnNo2');
+
+            // Tap su btnSi1b (schermata "Che bello"): sposta al tap invece che all'hover
+            btnSi1b.addEventListener('touchstart', (e) => {
+                if (interNoClicked && hoverCount1b < maxHovers) {
+                    e.preventDefault();
+                    moveSiButton();
+                }
+            }, { passive: false });
+
+            // Tap su btnNo2 (schermata "Almeno vuoi vedere l'Inter"): sposta al tap invece che all'hover
+            btnNo2.addEventListener('touchstart', (e) => {
+                if (hoverCount < maxHovers) {
+                    e.preventDefault();
+                    moveButton();
+                }
+            }, { passive: false });
+        });
+    </script>
+</body>
+</html>
